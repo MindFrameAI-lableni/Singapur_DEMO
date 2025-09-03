@@ -1,0 +1,67 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.dll
+*.dylib
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# Build / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Logs / debug
+*.log
+*.out
+*.err
+
+# Unit test / coverage
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# Jupyter / notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# --- VSCode ---
+.vscode/
+.history/
+*.code-workspace
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Project specific ---
+# Local keys and configs
+.env
+.env.local
+.env.*.local
+
+# Cache / artifacts
+user_tech_stack.json
+tech_required.txt
+
+# --- LiveKit / runtime ---
+# If docker volumes or generated files
+docker-data/
