@@ -3,6 +3,10 @@ from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import add_messages, AnyMessage
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
+from dotenv import load_dotenv
+
+# ======= Configuración general =======
+load_dotenv()
 
 class State(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]

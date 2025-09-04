@@ -1,7 +1,6 @@
 # livekit_agent.py
 import os
 import json
-from dotenv import load_dotenv
 
 from livekit.agents import (
     AgentSession,
@@ -11,15 +10,15 @@ from livekit.agents import (
     RoomInputOptions,
     cli,
 )
-from livekit.plugins import openai as lk_openai, elevenlabs, noise_cancellation, silero, langchain as lk_langchain
+from livekit.plugins import openai as lk_openai, elevenlabs, noise_cancellation, silero
+from livekit.plugins.langchain import LLMAdapter
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 from livekit import rtc  # tipos para text streams, room, etc.
 
 from langchain_core.messages import HumanMessage
-from langgraph_agent import create_workflow
+from .langgraph_agent import create_workflow
 
-# ======= Configuración general =======
-load_dotenv()
+
 
 LIVEKIT_URL = os.getenv("LIVEKIT_URL", "ws://localhost:7880")
 LIVEKIT_API_KEY = os.getenv("LIVEKIT_API_KEY")
@@ -68,7 +67,7 @@ async def entrypoint(ctx: JobContext):
     # 3) Crea la sesión de voz (audio bidireccional)
     session = AgentSession(
         # Adaptamos LangGraph como "LLM" del pipeline de voz
-        llm=lk_langchain.LLMAdapter(graph=workflow),
+        llm=LLMAdapter(graph=workflow),
 
         # STT: Whisper (OpenAI)
         stt=lk_openai.STT(model="whisper-1", detect_language=True),
